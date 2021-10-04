@@ -1,21 +1,23 @@
-import { combineReducers, createStore } from "redux";
-
+import { createStore } from "redux"
 
 //types constant
 export const types = {
   INCREASE: "INCREASE",
   DECREASE: "DECREASE",
   RESET: "RESET",
+  INCREASE_ODD_VALUE: "INCREASE_ODD_VALUE",
+  INCREASE_SPECIFIC_VALUE: "INCREASE_SPECIFIC_VALUE",
 }
-
 
 // actions
-export const increase =()=>{
+// action = objet
+export const increase = () => {
+  //action
   return {
-    type: types.INCREASE
+    // type: "INCREASE"
+    type: types.INCREASE,
   }
 }
-
 export const decrease = () => {
   return {
     type: types.DECREASE,
@@ -28,47 +30,94 @@ export const reset = () => {
   }
 }
 
+export const increase_odd_value = () => {
+  return {
+    type: types.INCREASE_ODD_VALUE,
+  }
+}
+
+export const increase_specific_value = (valueToIncrement) => {
+  return {
+    type: types.INCREASE_SPECIFIC_VALUE,
+    value: valueToIncrement,
+  }
+}
+
 //initial state in the store
 const initState = {
-  count: 0
-};
-
-// REDUCERS
+  count: 0,
+  name: "",
+  age: 18,
+}
+// REDUCERS ==> toujours (state, action)=> newState
 const counter = (state = initState, action) => {
   switch (action.type) {
     case types.INCREASE:
-      return {
-        ...state,
-        count: state.count + 1
-      };
+      // state.count+=1// noooooooon
+
+      // 1ère solution (non recommandé)
+      // const newState={}
+      // newState.count=state.count+1
+      // return newState
+
+      // 2ème solution
+      // const newState={...state}
+      // newState.count+=1
+      // return newState
+
+      // 3ème solution
+      const newState = {
+        ...state, // count :0 , age:18, name:""
+        count: state.count + 1,
+      }
+      return newState
+
     case types.DECREASE:
       return {
         ...state,
-        count: state.count - 1
-      };
+        count: state.count - 1,
+      }
     case types.RESET:
       return {
         ...state,
-        count: 0
-      };
+        count: 0,
+      }
+
+    case types.INCREASE_ODD_VALUE:
+      if (state.count % 2 === 1) {
+        return {
+          ...state,
+          count: state.count+1,
+        }
+      } else {
+        return state
+      }
+    case types.INCREASE_SPECIFIC_VALUE:
+      return {
+        ...state,
+        count: state.count +action.value,
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
 const tasks = (state = initState, action) => {
-switch (action.type) {
-  default:
-    return state
-}
+  switch (action.type) {
+    default:
+      return state
+  }
 }
 //create store
-// montrer ici cmment faire avec combine reducer
 const store = createStore(
   counter,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
+console.log(store.getState())
 
+export default store
+
+// montrer ici comment faire avec combine reducer
 // const rootReducer = () => {
 //   return combineReducers({
 //     counter,
@@ -79,5 +128,3 @@ const store = createStore(
 //   rootReducer(),
 //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // )
-
-export default store;
