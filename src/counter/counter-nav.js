@@ -1,22 +1,23 @@
 import React, { useState } from "react"
 
-import { useDispatch } from "react-redux"
-import {
+import {actions} from "../redux"
+import { connect } from "react-redux"
+
+
+
+export const CounterNav = ({
   increase,
   decrease,
   reset,
   increaseOddValue,
   increaseSpecificValue,
-} from "../redux"
-
-export const CounterNav = () => {
-  const dispatch = useDispatch()
+}) => {
   const [val, setVal] = useState(0)
   return (
     <div className="counter-nav">
       <button
         onClick={() => {
-          dispatch(decrease())
+          decrease()
         }}
       >
         Decrease
@@ -24,7 +25,7 @@ export const CounterNav = () => {
 
       <button
         onClick={() => {
-          dispatch(reset())
+          reset()
         }}
       >
         Reset
@@ -32,21 +33,21 @@ export const CounterNav = () => {
 
       <button
         onClick={() => {
-          dispatch(increase())
+          increase()
         }}
       >
         Increase
       </button>
       <button
         onClick={() => {
-          dispatch(increaseOddValue())
+          increaseOddValue()
         }}
       >
         Increase odd number
       </button>
       <button
         onClick={() => {
-          dispatch(increaseSpecificValue(Number(val)))
+          increaseSpecificValue(Number(val))
         }}
       >
         Increase with specific value
@@ -60,4 +61,7 @@ export const CounterNav = () => {
   )
 }
 
-export default CounterNav
+// first parameter: mapStateTopProps the selected data of the store
+// second parameter: mapDispatchTopProps the actions
+
+export default connect(null, actions)(CounterNav)

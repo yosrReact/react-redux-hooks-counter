@@ -1,4 +1,4 @@
-import { createStore } from "redux"
+import { combineReducers, createStore } from "redux"
 
 //types constant
 export const types = {
@@ -11,36 +11,43 @@ export const types = {
 
 // actions
 // action = objet
-export const increase = () => {
+const increase = () => {
   //action
   return {
     // type: "INCREASE"
     type: types.INCREASE,
   }
 }
-export const decrease = () => {
+const decrease = () => {
   return {
     type: types.DECREASE,
   }
 }
 
-export const reset = () => {
+const reset = () => {
   return {
     type: types.RESET,
   }
 }
 
-export const increaseOddValue = () => {
+const increaseOddValue = () => {
   return {
     type: types.INCREASE_ODD_VALUE,
   }
 }
 
-export const increaseSpecificValue = (valueToIncrement) => {
+const increaseSpecificValue = (valueToIncrement) => {
   return {
     type: types.INCREASE_SPECIFIC_VALUE,
     value: valueToIncrement,
   }
+}
+export const actions = {
+  increase,
+  decrease,
+  reset,
+  increaseOddValue,
+  increaseSpecificValue,
 }
 
 //initial state in the store
@@ -108,23 +115,16 @@ const tasks = (state = initState, action) => {
       return state
   }
 }
-//create store
-const store = createStore(
-  counter,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
-console.log(store.getState())
-
-export default store
 
 // montrer ici comment faire avec combine reducer
-// const rootReducer = () => {
-//   return combineReducers({
-//     counter,
-//     tasks,
-//   })
-// }
-// const store = createStore(
-//   rootReducer(),
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// )
+const rootReducer = () => {
+  return combineReducers({
+    counter,
+    tasks,
+  })
+}
+const store = createStore(
+  rootReducer(),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+export default store
