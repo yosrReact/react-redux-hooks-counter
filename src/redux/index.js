@@ -30,13 +30,13 @@ export const reset = () => {
   }
 }
 
-export const increase_odd_value = () => {
+export const increaseOddValue = () => {
   return {
     type: types.INCREASE_ODD_VALUE,
   }
 }
 
-export const increase_specific_value = (valueToIncrement) => {
+export const increaseSpecificValue = (valueToIncrement) => {
   return {
     type: types.INCREASE_SPECIFIC_VALUE,
     value: valueToIncrement,

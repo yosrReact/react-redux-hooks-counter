@@ -5,8 +5,8 @@ import {
   increase,
   decrease,
   reset,
-  increase_odd_value,
-  increase_specific_value,
+  increaseOddValue,
+  increaseSpecificValue,
 } from "../redux"
 
 export const CounterNav = () => {
@@ -39,14 +39,14 @@ export const CounterNav = () => {
       </button>
       <button
         onClick={() => {
-          dispatch(increase_odd_value())
+          dispatch(increaseOddValue())
         }}
       >
         Increase odd number
       </button>
       <button
         onClick={() => {
-          dispatch(increase_specific_value(Number(val)))
+          dispatch(increaseSpecificValue(Number(val)))
         }}
       >
         Increase with specific value
