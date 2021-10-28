@@ -1,12 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import store from "./redux/store"; 
 import "./styles.css";
-
-import { Provider } from "react-redux";
-import store from "./redux/index";
-
 import App from "./App";
+import { Provider } from "react-redux";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
@@ -14,4 +11,4 @@ ReactDOM.render(
     <App />
   </Provider>,
   rootElement
-);
+)

@@ -4,7 +4,7 @@ import Counter from "./counter";
 function App() {
   return (
     <div className="App">
-      <h1>React redux hooks</h1>
+      <h1>Counter</h1>
       <Counter />
     </div>
   );

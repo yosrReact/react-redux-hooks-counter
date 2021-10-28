@@ -1,21 +1,21 @@
 import React, { useState } from "react"
-
 import { useDispatch } from "react-redux"
 import {
-  increase,
   decrease,
+  increase,
   reset,
   increaseOddValue,
   increaseSpecificValue,
-} from "../redux"
+} from "../redux/actions/counter"
 
 export const CounterNav = () => {
   const dispatch = useDispatch()
-  const [val, setVal] = useState(0)
+  const [addedValue, setAddedValue] = useState(0)
   return (
     <div className="counter-nav">
       <button
         onClick={() => {
+          // setCount(count - 1)
           dispatch(decrease())
         }}
       >
@@ -42,19 +42,19 @@ export const CounterNav = () => {
           dispatch(increaseOddValue())
         }}
       >
-        Increase odd number
+        Increase odd value
       </button>
       <button
         onClick={() => {
-          dispatch(increaseSpecificValue(Number(val)))
+          dispatch(increaseSpecificValue(Number(addedValue)))
         }}
       >
-        Increase with specific value
+        Increase specific value
       </button>
       <input
         type="number"
-        value={val}
-        onChange={(e) => setVal(e.target.value)}
+        value={addedValue}
+        onChange={(e) => setAddedValue(e.target.value)}
       />
     </div>
   )

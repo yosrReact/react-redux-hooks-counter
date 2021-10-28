@@ -1,10 +1,10 @@
-import React from "react";
+import React from "react"
+import { useSelector } from "react-redux"
 
-import { useSelector } from "react-redux";
 
 const CounterValue = () => {
-  const count = useSelector(store => store.count);
-  return <div className="counter-value">{count}</div>;
-};
+  const counter = useSelector(state => state.counter)
+  return <div className="counter-value">{counter.count}</div>
+}
 
-export default CounterValue;
+export default CounterValue

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react"
 
 //uses useSelector hook
 import CounterVal from "./counter-value";
@@ -8,12 +8,12 @@ import CounterNav from "./counter-nav";
 import "./counter.css";
 
 const Counter = () => {
-  // console.log("Counter...", props);
+  const [count, setCount]=useState(0)
   return (
     <section className="counter">
       <h1>Counter</h1>
-      <CounterVal />
-      <CounterNav />
+      <CounterVal count={count}/>
+      <CounterNav  count={count} setCount={setCount}/>
     </section>
   );
 };
