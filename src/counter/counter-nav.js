@@ -7,6 +7,7 @@ import {
   reset,
   increaseOddValue,
   increaseSpecificValue,
+  increaseAsync,
 } from "../redux/slices/counter.slices"
 
 export const CounterNav = () => {
@@ -37,6 +38,13 @@ export const CounterNav = () => {
         }}
       >
         Increase
+      </button>
+      <button
+        onClick={() => {
+          dispatch(increaseAsync())
+        }}
+      >
+        Increase async
       </button>
       <button
         onClick={() => {
