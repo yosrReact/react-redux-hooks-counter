@@ -7,7 +7,7 @@ import {
   reset,
   increaseOddValue,
   increaseSpecificValue,
-} from "../redux/reducers/counter.reducers"
+} from "../redux/slices/counter.slices"
 
 export const CounterNav = () => {
   const dispatch = useDispatch()
