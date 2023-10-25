@@ -7,13 +7,14 @@ import {
   reset,
   increaseOddValue,
   increaseSpecificValue,
-} from "../redux"
+} from "../redux/reducers/counter.reducers"
 
 export const CounterNav = () => {
   const dispatch = useDispatch()
   const [val, setVal] = useState(0)
   return (
     <div className="counter-nav">
+      <h1 className="bonjour">bonjour</h1>
       <button
         onClick={() => {
           dispatch(decrease())
