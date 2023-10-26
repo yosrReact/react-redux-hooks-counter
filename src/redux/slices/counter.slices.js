@@ -46,7 +46,7 @@ const counterSlice = createSlice({
       .addCase(increaseAsync.fulfilled, (state, action) => {
         state.loading = false
         state.count++
-        state.message = action.paylod
+        state.message = action.payload.message
       })
       .addCase(increaseAsync.rejected, (state) => {
         state.loading = false
